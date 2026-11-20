@@ -77,7 +77,8 @@ Noah Ekström
 
 ### 🌍 Contributing & Adding Languages
 
-Contributions are welcome! If you would like to add support for another language, follow the step-by-step translation guide and open a Pull Request.
+Contributions are welcome! If you would like to add support for another language, follow the **[step-by-step translation guide](https://github.com/HannesAlexandersson/student-mixer/blob/main/src/i18n/readme.md)**
+and open a Pull Request.
 
 For bug reports or feature ideas, feel free to open an issue.
 
