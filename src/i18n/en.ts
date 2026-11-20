@@ -10,11 +10,16 @@ export const en = {
 
     'fileupload.dropzone.prompt': 'Drag and drop your name list here, or',
     'fileupload.dropzone.browse': 'browse',
-    'fileupload.dropzone.formats': 'Supports .CSV and .JSON',
+    'fileupload.dropzone.formats': 'Supports  .TXT, .CSV and .JSON',
     'fileupload.sparkles.fill_test_class': 'Fill test class ({count} students)',
     'fileupload.error.invalid_format': 'Please upload a .json or .csv file.',
     'fileupload.error.empty_file': 'No names were found in the file.',
     'fileupload.error.parse_failed': 'Could not read the file.',
+    'fileupload.tooltip.aria_label': 'How to format your name list',
+    'fileupload.tooltip.title': 'How to format your file',
+    'fileupload.tooltip.csv_label': 'CSV or TXT (one name per line):',
+    'fileupload.tooltip.json_label': 'JSON (array of names):',
+    'fileupload.tooltip.tip': 'Tip: You can also export a single column from Excel or Google Sheets as .csv.',
 
     'mixer.blending_status': 'Blending {count} students...',
 

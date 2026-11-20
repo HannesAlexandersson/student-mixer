@@ -12,11 +12,16 @@ export const sv: Record<TranslationKey, string> = {
 
     'fileupload.dropzone.prompt': 'Dra och släpp din namnlista här, eller',
     'fileupload.dropzone.browse': 'bläddra',
-    'fileupload.dropzone.formats': 'Stöder .CSV och .JSON',
+    'fileupload.dropzone.formats': 'Stöder .TXT, .CSV och .JSON',
     'fileupload.sparkles.fill_test_class': 'Fyll i testklass ({count} studenter)',
     'fileupload.error.invalid_format': 'Vänligen ladda upp en .json- eller .csv-fil.',
     'fileupload.error.empty_file': 'Hittade inga namn i filen.',
     'fileupload.error.parse_failed': 'Kunde inte läsa filen.',
+    'fileupload.tooltip.aria_label': 'Så formaterar du din namnlista',
+    'fileupload.tooltip.title': 'Så formaterar du filen',
+    'fileupload.tooltip.csv_label': 'CSV eller TXT (ett namn per rad):',
+    'fileupload.tooltip.json_label': 'JSON (lista med namn):',
+    'fileupload.tooltip.tip': 'Tips: Du kan också exportera en kolumn från Excel eller Google Sheets som .csv.',
 
     'mixer.blending_status': 'Mixar {count} studenter...',
 
