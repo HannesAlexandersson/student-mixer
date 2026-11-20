@@ -16,6 +16,8 @@ export const en = {
     'fileupload.error.empty_file': 'No names were found in the file.',
     'fileupload.error.parse_failed': 'Could not read the file.',
 
+    'mixer.blending_status': 'Blending {count} students...',
+
     'roster.present_heading': 'Present ({count})',
     'roster.present_hint': 'Click a name to mark as absent',
     'roster.remove_tooltip': 'Remove from today’s mix',
