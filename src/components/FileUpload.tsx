@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Upload, FileText, Sparkles } from 'lucide-react';
+import { Upload, FileText } from 'lucide-react';
 import { parseStudentFile } from '../utils/parseNames';
 import { useI18n } from '../i18n';
 import type { TranslationKey } from '../i18n/en';
@@ -7,12 +7,6 @@ import type { TranslationKey } from '../i18n/en';
 interface FileUploadProps {
     onStudentsLoaded: (names: string[]) => void;
 }
-
-const SAMPLE_STUDENTS = [
-    'Alice Lindqvist', 'Liam Bergström', 'Maja Sjöberg', 'Noah Ekström',
-    'Ella Nyström', 'William Holm', 'Alma Lundgren', 'Lucas Forsberg',
-    'Selma Engström', 'Oscar Viklund', 'Astrid Sandberg',
-];
 
 export const FileUpload: React.FC<FileUploadProps> = ({ onStudentsLoaded }) => {
     const { i18n } = useI18n();
@@ -90,17 +84,6 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onStudentsLoaded }) => {
                 <p className="mt-1 flex items-center justify-center gap-1.5 text-xs text-slate-400">
                     <FileText className="h-3.5 w-3.5" /> {i18n('fileupload.dropzone.formats')}
                 </p>
-            </div>
-
-            <div className="flex justify-end">
-                <button
-                    type="button"
-                    onClick={() => onStudentsLoaded(SAMPLE_STUDENTS)}
-                    className="inline-flex items-center gap-1.5 text-xs text-slate-400 transition hover:text-indigo-400"
-                >
-                    <Sparkles className="h-3.5 w-3.5" />
-                    {i18n('fileupload.sparkles.fill_test_class', { count: SAMPLE_STUDENTS.length })}
-                </button>
             </div>
 
             {error && (
