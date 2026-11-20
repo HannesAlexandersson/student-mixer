@@ -4,6 +4,8 @@ A lightweight, fast single-page web app for splitting classes or teams into bala
 
 Built to eliminate the friction of manual group assignments during workshops and study sessions: upload a roster, click off anyone who is absent, pick a group size, and blend.
 
+Try it out for yourself [here](https://www.student-mixer.vercel.app), but remember that you'll need a list of names.
+
 ---
 
 ## Features
