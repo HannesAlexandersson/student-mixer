@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { UserMinus, RotateCcw, Users } from 'lucide-react';
 import { useI18n } from '../i18n';
 
@@ -8,6 +8,7 @@ interface StudentRosterProps {
     onRemove: (name: string) => void;
     onRestore: (name: string) => void;
     onRestoreAll: () => void;
+    onAdd: (name: string) => boolean;
 }
 
 export const StudentRoster: React.FC<StudentRosterProps> = ({
@@ -16,11 +17,56 @@ export const StudentRoster: React.FC<StudentRosterProps> = ({
     onRemove,
     onRestore,
     onRestoreAll,
+    onAdd,
 }) => {
     const { i18n } = useI18n();
+    const [name, setName] = useState('');
+    const [isDuplicate, setIsDuplicate] = useState(false);
+
+    const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const trimmedName = name.trim();
+        if (!trimmedName) return;
+        if (!onAdd(trimmedName)) {
+            setIsDuplicate(true);
+            return;
+        }
+        setName('');
+        setIsDuplicate(false);
+    };
 
     return (
         <div className="space-y-5 rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="student-name" className="mb-2 block text-sm font-medium text-slate-300">
+                    {i18n('roster.student_name')}
+                </label>
+                <div className="flex flex-col gap-2 sm:flex-row">
+                    <input
+                        id="student-name"
+                        value={name}
+                        onChange={(event) => {
+                            setName(event.target.value);
+                            setIsDuplicate(false);
+                        }}
+                        aria-invalid={isDuplicate}
+                        aria-describedby={isDuplicate ? 'student-name-error' : undefined}
+                        className="min-w-0 flex-1 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-indigo-400 focus:outline-none"
+                    />
+                    <button
+                        type="submit"
+                        disabled={!name.trim()}
+                        className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-40"
+                    >
+                        {i18n('roster.add_student')}
+                    </button>
+                </div>
+                {isDuplicate && (
+                    <p id="student-name-error" role="alert" className="mt-2 text-sm text-rose-300">
+                        {i18n('roster.duplicate_name')}
+                    </p>
+                )}
+            </form>
             {/* Active students */}
             <div>
                 <div className="mb-3 flex items-center justify-between">

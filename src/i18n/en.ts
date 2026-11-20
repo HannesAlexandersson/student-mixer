@@ -23,6 +23,9 @@ export const en = {
     'roster.remove_tooltip': 'Remove from today’s mix',
     'roster.removed_heading': 'Removed / Absent ({count}) – click to restore:',
     'roster.restore_all': 'Restore all',
+    'roster.student_name': 'Student name',
+    'roster.add_student': 'Add student',
+    'roster.duplicate_name': 'This name is already in the list.',
 
     'parser.error.invalid_json_array': 'The JSON file must contain an array of names.',
 } as const;
