@@ -1,9 +1,11 @@
+import type { TranslationKey } from '../i18n/en';
+
 export function parseStudentFile(content: string, fileName: string): string[] {
     const trimmed = content.trim();
     if (!trimmed) return [];
 
     if (fileName.toLowerCase().endsWith('.json')) {
-        const parsed = JSON.parse(parsedJsonString(trimmed));
+        const parsed = JSON.parse(stripBom(trimmed));
         if (Array.isArray(parsed)) {
             return parsed
                 .map((item) => {
@@ -15,7 +17,7 @@ export function parseStudentFile(content: string, fileName: string): string[] {
                 })
                 .filter(Boolean);
         }
-        throw new Error('JSON-filen måste innehålla en lista (array) med namn.');
+        throw new Error('parser.error.invalid_json_array' satisfies TranslationKey);
     }
 
     // CSV eller plain text
@@ -33,7 +35,7 @@ export function parseStudentFile(content: string, fileName: string): string[] {
     return lines;
 }
 
-function parsedJsonString(raw: string): string {
+function stripBom(raw: string): string {
     // Removes BOM-chars if there is any
     return raw.replace(/^\uFEFF/, '');
 }

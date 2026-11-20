@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { Upload, FileText, Sparkles } from 'lucide-react';
 import { parseStudentFile } from '../utils/parseNames';
+import { useI18n } from '../i18n';
+import type { TranslationKey } from '../i18n/en';
 
 interface FileUploadProps {
     onStudentsLoaded: (names: string[]) => void;
@@ -9,19 +11,22 @@ interface FileUploadProps {
 const SAMPLE_STUDENTS = [
     'Alice Lindqvist', 'Liam Bergström', 'Maja Sjöberg', 'Noah Ekström',
     'Ella Nyström', 'William Holm', 'Alma Lundgren', 'Lucas Forsberg',
-    'Selma Engström', 'Oscar Viklund', 'Astrid Sandberg'
+    'Selma Engström', 'Oscar Viklund', 'Astrid Sandberg',
 ];
 
 export const FileUpload: React.FC<FileUploadProps> = ({ onStudentsLoaded }) => {
+    const { i18n } = useI18n();
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [isDragging, setIsDragging] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
     const handleFile = async (file: File) => {
         setError(null);
-        const validExt = file.name.endsWith('.json') || file.name.endsWith('.csv') || file.name.endsWith('.txt');
+        const validExt =
+            file.name.endsWith('.json') || file.name.endsWith('.csv') || file.name.endsWith('.txt');
+
         if (!validExt) {
-            setError('Vänligen ladda upp en .json- eller .csv-fil.');
+            setError(i18n('fileupload.error.invalid_format'));
             return;
         }
 
@@ -29,12 +34,16 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onStudentsLoaded }) => {
             const text = await file.text();
             const names = parseStudentFile(text, file.name);
             if (names.length === 0) {
-                setError('Hittade inga namn i filen.');
+                setError(i18n('fileupload.error.empty_file'));
                 return;
             }
             onStudentsLoaded(names);
         } catch (err) {
-            setError(err instanceof Error ? err.message : 'Kunde inte läsa filen.');
+            if (err instanceof Error && err.message.startsWith('parser.error.')) {
+                setError(i18n(err.message as TranslationKey));
+            } else {
+                setError(i18n('fileupload.error.parse_failed'));
+            }
         }
     };
 
@@ -48,7 +57,10 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onStudentsLoaded }) => {
     return (
         <div className="w-full space-y-3">
             <div
-                onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
+                onDragOver={(e) => {
+                    e.preventDefault();
+                    setIsDragging(true);
+                }}
                 onDragLeave={() => setIsDragging(false)}
                 onDrop={onDrop}
                 onClick={() => fileInputRef.current?.click()}
@@ -72,10 +84,11 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onStudentsLoaded }) => {
                     <Upload className="h-6 w-6" />
                 </div>
                 <p className="text-base font-medium text-slate-200">
-                    Dra och släpp din namnlista här, eller <span className="text-indigo-400 underline">bläddra</span>
+                    {i18n('fileupload.dropzone.prompt')}{' '}
+                    <span className="text-indigo-400 underline">{i18n('fileupload.dropzone.browse')}</span>
                 </p>
                 <p className="mt-1 flex items-center justify-center gap-1.5 text-xs text-slate-400">
-                    <FileText className="h-3.5 w-3.5" /> Stöder .CSV och .JSON
+                    <FileText className="h-3.5 w-3.5" /> {i18n('fileupload.dropzone.formats')}
                 </p>
             </div>
 
@@ -85,7 +98,8 @@ export const FileUpload: React.FC<FileUploadProps> = ({ onStudentsLoaded }) => {
                     onClick={() => onStudentsLoaded(SAMPLE_STUDENTS)}
                     className="inline-flex items-center gap-1.5 text-xs text-slate-400 transition hover:text-indigo-400"
                 >
-                    <Sparkles className="h-3.5 w-3.5" /> Fyll i testklass (11 studenter)
+                    <Sparkles className="h-3.5 w-3.5" />
+                    {i18n('fileupload.sparkles.fill_test_class', { count: SAMPLE_STUDENTS.length })}
                 </button>
             </div>
 
