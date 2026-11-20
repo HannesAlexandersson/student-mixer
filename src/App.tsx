@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Shuffle, Trash2, Globe } from 'lucide-react';
 import { FileUpload } from './components/FileUpload';
 import { StudentRoster } from './components/StudentRooster';
+import { BlenderAnimation } from './components/BlenderAnimations';
 import { useI18n, dictionaries, type Locale } from './i18n';
 
 const STORAGE_KEY_ALL = 'student_mixer_all';
@@ -53,6 +54,7 @@ export function App() {
 
   const [groupSize, setGroupSize] = useState<number>(3);
   const [groups, setGroups] = useState<string[][]>([]);
+  const [isBlending, setIsBlending] = useState<boolean>(false);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY_ALL, JSON.stringify(allStudents));
@@ -88,16 +90,25 @@ export function App() {
   };
 
   const handleMix = () => {
-    setGroups(createBalancedGroups(activeStudents, groupSize));
+    setIsBlending(true);
   };
+
+  const handleBlendComplete = useCallback(() => {
+    setGroups(createBalancedGroups(activeStudents, groupSize));
+    setIsBlending(false);
+  }, [activeStudents, groupSize]);
 
   return (
     <div className="min-h-screen bg-slate-950 px-4 py-10 text-slate-100">
+      {isBlending && (
+        <BlenderAnimation students={activeStudents} onComplete={handleBlendComplete} />
+      )}
+
       <div className="mx-auto max-w-4xl space-y-8">
         {/* Header */}
         <header className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight text-white">{i18n('app.title')}</h1>
+          <div><div className='flex items-start'>
+            <h1 className="text-3xl font-bold tracking-tight text-white">{i18n('app.title')}</h1> </div>
             <p className="mt-1 text-sm text-slate-400">{i18n('app.subtitle')}</p>
           </div>
 
@@ -165,7 +176,7 @@ export function App() {
 
               <button
                 onClick={handleMix}
-                disabled={activeStudents.length < 2}
+                disabled={activeStudents.length < 2 || isBlending}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-500 px-6 py-3 text-sm font-bold text-slate-950 shadow-lg shadow-emerald-500/20 transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto"
               >
                 <Shuffle className="h-4 w-4" />

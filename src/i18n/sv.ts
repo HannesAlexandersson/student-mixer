@@ -18,6 +18,8 @@ export const sv: Record<TranslationKey, string> = {
     'fileupload.error.empty_file': 'Hittade inga namn i filen.',
     'fileupload.error.parse_failed': 'Kunde inte läsa filen.',
 
+    'mixer.blending_status': 'Mixar {count} studenter...',
+
     'roster.present_heading': 'Närvarande ({count})',
     'roster.present_hint': 'Klicka på ett namn för att markera frånvarande',
     'roster.remove_tooltip': 'Ta bort från dagens mix',
