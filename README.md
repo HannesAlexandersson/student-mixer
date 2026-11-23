@@ -44,12 +44,12 @@ Try it out for yourself [here](https://www.student-mixer.vercel.app), but rememb
    cd student-mixer
    ```
 2.   **Install dependencies:**
-     ```bash
-    npm install
-    ```
+   ```bash
+       npm install
+   ```
 3. **Start the development server:**
-    ```bash
-  npm run dev
+   ```bash
+     npm run dev
    ```
 
 
