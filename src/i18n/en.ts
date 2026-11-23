@@ -21,6 +21,9 @@ export const en = {
     'fileupload.tooltip.json_label': 'JSON (array of names):',
     'fileupload.tooltip.tip': 'Tip: You can also export a single column from Excel or Google Sheets as .csv.',
 
+    'footer.contribute_prompt': 'Want to contribute? Check out the GitHub',
+    'footer.repository_link': 'repository',
+
     'mixer.blending_status': 'Blending {count} students...',
 
     'roster.present_heading': 'Present ({count})',

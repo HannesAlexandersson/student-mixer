@@ -99,12 +99,12 @@ export function App() {
   }, [activeStudents, groupSize]);
 
   return (
-    <div className="min-h-screen bg-slate-950 px-4 py-10 text-slate-100">
+    <div className="flex min-h-screen flex-col justify-between bg-slate-950 px-4 py-10 text-slate-100">
       {isBlending && (
         <BlenderAnimation students={activeStudents} onComplete={handleBlendComplete} />
       )}
 
-      <div className="mx-auto max-w-4xl space-y-8">
+      <main className="mx-auto w-full max-w-4xl space-y-8">
         {/* Header */}
         <header className="flex flex-wrap items-start justify-between gap-4">
           <div><div className='flex items-start'>
@@ -218,7 +218,20 @@ export function App() {
             </div>
           </section>
         )}
-      </div>
+      </main>
+
+      <footer className="mx-auto mt-12 w-full max-w-4xl border-t border-slate-900 pt-6 text-center text-xs text-slate-500">
+        {i18n('footer.contribute_prompt')}{' '}
+        <a
+          href="https://github.com/HannesAlexandersson/student-mixer"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-slate-400 underline transition hover:text-indigo-400"
+        >
+          {i18n('footer.repository_link')}
+        </a>
+        .
+      </footer>
     </div>
   );
 }

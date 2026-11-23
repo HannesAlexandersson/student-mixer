@@ -23,6 +23,9 @@ export const sv: Record<TranslationKey, string> = {
     'fileupload.tooltip.json_label': 'JSON (lista med namn):',
     'fileupload.tooltip.tip': 'Tips: Du kan också exportera en kolumn från Excel eller Google Sheets som .csv.',
 
+    'footer.contribute_prompt': 'Vill du bidra? Kolla in projektets GitHub-',
+    'footer.repository_link': 'repository',
+
     'mixer.blending_status': 'Mixar {count} studenter...',
 
     'roster.present_heading': 'Närvarande ({count})',
