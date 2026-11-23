@@ -11,6 +11,7 @@ Try it out for yourself [here](https://www.student-mixer.vercel.app), but rememb
 ## Features
 
 - **CSV & JSON Roster Upload:** Drag and drop (or browse for) `.csv`, `.json`, or `.txt` files containing student names.
+- **Manual Roster Additions:** Add missing names after uploading a list; additions are saved locally alongside the uploaded roster.
 - **Balanced Group Generation:** Uses a Fisher-Yates shuffle and distributes any remainder students evenly across groups (e.g., 10 students in groups of 3 becomes `4, 3, 3` instead of `3, 3, 3, 1`) so nobody is ever left solo.
 - **Flexible Group Sizes:** Choose group sizes between **2 and 5** members.
 - **Session Absence Tracking (`localStorage`):** Click any student to mark them absent for the session, and restore accidentally removed names with a single click—no need to re-upload the file.

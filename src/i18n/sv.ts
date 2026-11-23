@@ -33,6 +33,9 @@ export const sv: Record<TranslationKey, string> = {
     'roster.remove_tooltip': 'Ta bort från dagens mix',
     'roster.removed_heading': 'Borttagna / Frånvarande ({count}) - klicka för att lägga tillbaka:',
     'roster.restore_all': 'Återställ alla',
+    'roster.student_name': 'Elevens namn',
+    'roster.add_student': 'Lägg till elev',
+    'roster.duplicate_name': 'Namnet finns redan i listan.',
 
     'parser.error.invalid_json_array': 'JSON-filen måste innehålla en lista (array) med namn.',
 };

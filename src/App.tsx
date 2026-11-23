@@ -77,6 +77,13 @@ export function App() {
     setRemovedStudents((prev) => [...prev, name]);
   };
 
+  const handleAddStudent = (name: string): boolean => {
+    if (allStudents.includes(name)) return false;
+    setAllStudents((prev) => [...prev, name]);
+    setGroups([]);
+    return true;
+  };
+
   const handleRestoreStudent = (name: string) => {
     setRemovedStudents((prev) => prev.filter((n) => n !== name));
   };
@@ -152,6 +159,7 @@ export function App() {
               onRemove={handleRemoveStudent}
               onRestore={handleRestoreStudent}
               onRestoreAll={() => setRemovedStudents([])}
+              onAdd={handleAddStudent}
             />
 
             {/* Group size and Mix controls */}
