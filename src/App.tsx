@@ -78,7 +78,11 @@ export function App() {
   };
 
   const handleAddStudent = (name: string): boolean => {
-    if (allStudents.includes(name)) return false;
+    const normalized = name.toLowerCase();
+    if (allStudents.some((student) => student.toLowerCase() === normalized)) {
+      return false;
+    }
+
     setAllStudents((prev) => [...prev, name]);
     setGroups([]);
     return true;
