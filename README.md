@@ -85,5 +85,13 @@ and open a Pull Request.
 
 For bug reports or feature ideas, feel free to open an issue.
 
+## ✨ Contributors
+
+Thanks to all the people who have contributed to this project! See [CONTRIBUTORS.md](CONTRIBUTORS.md) for details.
+
+<a href="https://github.com/HannesAlexandersson/student-mixer/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=HannesAlexandersson/student-mixer" alt="Contributors" />
+</a>
+
 ### 📝 License
 This project is open source and available under the MIT License.
