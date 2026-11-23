@@ -1,75 +1,88 @@
-# React + TypeScript + Vite
+#  Student Mixer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight, fast single-page web app for splitting classes or teams into balanced groups—complete with a 3D blender animation powered by React Three Fiber.
 
-Currently, two official plugins are available:
+Built to eliminate the friction of manual group assignments during workshops and study sessions: upload a roster, click off anyone who is absent, pick a group size, and blend.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Try it out for yourself [here](https://www.student-mixer.vercel.app), but remember that you'll need a list of names.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+- **CSV & JSON Roster Upload:** Drag and drop (or browse for) `.csv`, `.json`, or `.txt` files containing student names.
+- **Balanced Group Generation:** Uses a Fisher-Yates shuffle and distributes any remainder students evenly across groups (e.g., 10 students in groups of 3 becomes `4, 3, 3` instead of `3, 3, 3, 1`) so nobody is ever left solo.
+- **Flexible Group Sizes:** Choose group sizes between **2 and 5** members.
+- **Session Absence Tracking (`localStorage`):** Click any student to mark them absent for the session, and restore accidentally removed names with a single click—no need to re-upload the file.
+- **3D Blender Animation:** Watch student name cards drop into a 3D blender and swirl together before the randomized groups are revealed.
+- **Multi-Language Support (i18n):** Built-in language switcher with automatic browser locale detection and a type-safe dictionary system.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+##  Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Framework:** React + TypeScript + Vite
+- **Styling:** Tailwind CSS
+- **3D Graphics:** Three.js, React Three Fiber (`@react-three/fiber`), Drei (`@react-three/drei`)
+- **Icons:** Lucide React
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
 
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or newer recommended)
+- npm
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/HannesAlexandersson/student-mixer.git](https://github.com/HannesAlexandersson/student-mixer.git)
+   cd student-mixer
+   ```
+2.   **Install dependencies:**
+     ```bash
+    npm install
+    ```
+3. **Start the development server:**
+    ```bash
+  npm run dev
+   ```
+
+
+### 📄 Supported File Formats
+
+**JSON** 
+An array of strings or objects containing a name / namn property:
+```json
+[
+  "Alice Lindqvist",
+  "Liam Bergström",
+  "Maja Sjöberg",
+  "Noah Ekström"
+]
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+**CSV**
+A single-column list (an optional name or namn header row is automatically ignored) or comma/semicolon-separated values:
+```json
+Kodavsnitt
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+name
+Alice Lindqvist
+Liam Bergström
+Maja Sjöberg
+Noah Ekström
 ```
+
+### 🌍 Contributing & Adding Languages
+
+Contributions are welcome! If you would like to add support for another language, follow the **[step-by-step translation guide](https://github.com/HannesAlexandersson/student-mixer/blob/main/src/i18n/readme.md)**
+and open a Pull Request.
+
+For bug reports or feature ideas, feel free to open an issue.
+
+### 📝 License
+This project is open source and available under the MIT License.
