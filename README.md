@@ -1,3 +1,9 @@
+
+
+https://github.com/user-attachments/assets/0ed8af4b-42bb-4d28-9017-f28429c3cc25
+
+
+
 #  Student Mixer
 
 A lightweight, fast single-page web app for splitting classes or teams into balanced groups—complete with a 3D blender animation powered by React Three Fiber.
